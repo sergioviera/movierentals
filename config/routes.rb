@@ -1,4 +1,6 @@
 Movierentals::Application.routes.draw do
+  devise_for :users
+
   resources :movies
   resources :rentals
   

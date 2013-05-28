@@ -1,3 +1,5 @@
 Base app with 2 objects.
 
 Movies and their rental movements.
+
+Uses devise gem to authenticate.

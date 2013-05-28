@@ -1,0 +1,6 @@
+Movie <%= @movie.title %> (<%= link_to "back", new_movie_path %>)
+<hr />
+<%= form_for @movie do |f| -%>
+  Returned on: <%= f.text_field :title %><br />
+  <%= f.submit %>
+<% end -%>

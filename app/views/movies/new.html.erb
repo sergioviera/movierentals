@@ -1,27 +1,52 @@
-Enter new movie information:<br />
-<%= form_for @movie do |f| -%>
-	Title: <%= f.text_field :title %><br />
-	Year: <%= f.text_field :year %><br />
-	<%= f.submit %>
-<% end -%>
-<hr />
-<hr />
-List of all movies:<br />
-<% if !@movies.blank? %>
-  <table border=1>
-  	<tr>
-  		<th> Title </th>
-  		<th> Year </th>
-  		<th></th>
-  	</tr>
-  <% for item in @movies %>
-  	<tr>
-  		<td><%= link_to item.title, :controller => :rentals, :action => :new, :id => item.id %></td>
-  		<td><%= item.year %></td>
-		<td><%= link_to "Edit", :action => :edit, :id => item.id %></td>
-  	</tr>
+<div class="row">
+  <section id="new">
+  <%= form_for @movie, html: {:class => 'form-horizontal well'} do |f| -%>
+  <fieldset>
+    <legend>Enter new movie information:</legend>
+    <div class="control-group">
+      <label class="control-label" for="movie_title">Title:</label>
+      <div class="controls">
+        <%= f.text_field :title, :class => "input-xlarge" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="movie_year">Year:</label>
+      <div class="controls">
+        <%= f.text_field :year, :class => "input-xlarge" %>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= f.submit "Add", class: "btn btn-primary" %>
+    </div>
+  </fieldset>
+  <% end -%>
+  </section>
+  <hr />
+  <section id="list">
+    <div class="page-header">
+      <h1>List of all movies:</h1>
+    </div>
+  <% if !@movies.blank? %>
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th> Title </th>
+          <th> Year </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% for item in @movies %>
+        <tr>
+          <td><%= link_to item.title, :controller => :rentals, :action => :new, :id => item.id %></td>
+          <td><%= item.year %></td>
+          <td><%= link_to "Edit", :action => :edit, :id => item.id %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No movies yet.</p>
   <% end %>
-  </table>
-<% else %>
-  <p>No movies yet.</p>
-<% end %>
+  </section>
+</div> 

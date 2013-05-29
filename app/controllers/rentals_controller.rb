@@ -1,4 +1,6 @@
 class RentalsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def new
   	@movie = Movie.find(params[:id])
   	@rentals = @movie.rentals.build
